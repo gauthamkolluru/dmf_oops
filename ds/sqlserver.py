@@ -1,12 +1,21 @@
-from sqlalchemy_generic import SQLALCHEMY_GENERIC
+# from sqlalchemy_generic import SQLALCHEMY_GENERIC
+from . import sqlalchemy_generic
 
 QUERY_STRING = {"driver": "sql+server"}
 
 
-class SQLSERVER(SQLALCHEMY_GENERIC):
-    def __init__(self, drivername="", username="", password="", host="", port=0, database="", connection_query=QUERY_STRING):
-        super().__init__(drivername, username, password,
-                         host, port, database, connection_query)
+class SQLSERVER(sqlalchemy_generic.SQLALCHEMY_GENERIC):
+    def __init__(self, db_details):
+        self.db_details = db_details
+        self.connection_query = self.db_details["connection_query"].update(
+            QUERY_STRING) if self.db_details["connection_query"] else QUERY_STRING
+        super().__init__(drivername=self.db_details["drivername"],
+                         username=self.db_details["username"],
+                         password=self.db_details["password"],
+                         host=self.db_details["host"],
+                         port=self.db_details["port"],
+                         database=self.db_details["database"],
+                         connection_query=self.connection_query)
 
     def print_values(self):
         print(self.drivername)
@@ -32,13 +41,7 @@ if __name__ == "__main__":
 
     db_det = pkg_details('source')
 
-    ss = SQLSERVER(db_det['drivername'],
-                   username=db_det['username'],
-                   password=db_det['password'],
-                   host=db_det['host'],
-                   port=db_det['port'],
-                   database=db_det['database'])
-    # ss.print_values()
+    ss = SQLSERVER(db_det)
 
     for k, d in ss.get_table_data():
         print(k)

@@ -7,7 +7,7 @@
             "host": "localhost\\SQLEXPRESS",
             "port": "0",
             "database": "test1",
-            "query": ""
+            "connection_query": {}
         },
         "destination": {
             "drivername": "snowflake",
@@ -16,7 +16,7 @@
             "host": "",
             "port": "0",
             "database": "",
-            "query": ""
+            "connection_query": {}
         }
     }
 }
