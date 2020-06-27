@@ -1,0 +1,22 @@
+{
+    "db_engines": {
+        "source": {
+            "drivername": "mssql",
+            "username": "",
+            "password": "",
+            "host": "localhost\\SQLEXPRESS",
+            "port": "0",
+            "database": "test1",
+            "query": ""
+        },
+        "destination": {
+            "drivername": "snowflake",
+            "username": "",
+            "password": "",
+            "host": "",
+            "port": "0",
+            "database": "",
+            "query": ""
+        }
+    }
+}
