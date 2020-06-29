@@ -26,7 +26,7 @@ class SQLALCHEMY_GENERIC:
         for table_name in self.table_names:
             self.table_data = self.db_conn.execute(
                 self.select_query.format(table_name))
-            yield self.table_data.keys(), self.table_data.fetchall()
+            yield table_name, self.table_data.keys(), self.table_data.fetchall()
 
 
 if __name__ == '__main__':
